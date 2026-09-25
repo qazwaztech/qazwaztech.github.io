@@ -27,36 +27,39 @@
   </a>
   <main id="main">
     <section class="hero" id="top">
-      <h1>INTELLIGENCE FOR WHAT COMES NEXT</h1>
-      <p class="hero-lead">We design written intelligence systems that help people get clear, then move.</p>
+      <canvas id="synapses" class="hero-field" aria-hidden="true"></canvas>
+      <div class="hero-copy">
+        <h1>INTELLIGENCE FOR WHAT COMES NEXT</h1>
+        <p class="hero-lead">We design written intelligence systems that help people get clear, then move.</p>
+      </div>
     </section>
     <section class="band" id="work">
       <h2>WORK</h2>
       <div class="work-grid">
         <a class="work-card" href="#what">
           <div class="work-visual">
-            <img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&w=1400&q=80" alt="Dark abstract form" />
+            <img src="https://images.unsplash.com/photo-1502134249126-9f3755a50d78?auto=format&fit=crop&w=1400&q=80" alt="Deep-space nebula photograph" />
           </div>
           <h3>STRATEGIC CLARITY</h3>
           <p>A written brief that isolates the real problem, the constraints, the options, and the next move.</p>
         </a>
         <a class="work-card" href="#what">
           <div class="work-visual">
-            <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=1400&q=80" alt="Abstract layered forms" />
+            <img src="https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?auto=format&fit=crop&w=1400&q=80" alt="Violet starfield photograph" />
           </div>
           <h3>NARRATIVE & POSITIONING</h3>
           <p>Architecture for how your work, identity, or application is actually read.</p>
         </a>
         <a class="work-card" href="#what">
           <div class="work-visual">
-            <img src="https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?auto=format&fit=crop&w=1400&q=80" alt="Connected light across dark space" />
+            <img src="https://images.unsplash.com/photo-1464802686167-b939a6910659?auto=format&fit=crop&w=1400&q=80" alt="Galaxy photograph" />
           </div>
           <h3>THINKING PARTNER</h3>
           <p>An async retainer. You send the dilemma. We return structured thought. No standups.</p>
         </a>
         <a class="work-card" href="#request">
           <div class="work-visual">
-            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1400&q=80" alt="Abstract color field" />
+            <img src="https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?auto=format&fit=crop&w=1400&q=80" alt="Dark cloud photograph" />
           </div>
           <h3>THE BRIEF</h3>
           <p>Diagnosis, leverage, tradeoffs, recommendation. Meant to be used, not presented.</p>
@@ -145,5 +148,109 @@
     </div>
     <p class="legal">&copy; 2026 INTELLECKI</p>
   </footer>
+  <script>
+    (function () {
+      var canvas = document.getElementById("synapses");
+      if (!canvas) return;
+      var ctx = canvas.getContext("2d");
+      var nodes = [];
+      var pulses = [];
+      var w = 0, h = 0, t = 0;
+
+      function resize() {
+        w = canvas.width = canvas.offsetWidth * devicePixelRatio;
+        h = canvas.height = canvas.offsetHeight * devicePixelRatio;
+        ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+        build();
+      }
+
+      function build() {
+        var count = Math.round((canvas.offsetWidth * canvas.offsetHeight) / 14000);
+        count = Math.max(42, Math.min(90, count));
+        nodes = [];
+        for (var i = 0; i < count; i++) {
+          nodes.push({
+            x: Math.random() * canvas.offsetWidth,
+            y: Math.random() * canvas.offsetHeight,
+            vx: (Math.random() - 0.5) * 0.28,
+            vy: (Math.random() - 0.5) * 0.28,
+            r: 1.2 + Math.random() * 1.8
+          });
+        }
+        pulses = [];
+      }
+
+      function step() {
+        t += 1;
+        var width = canvas.offsetWidth;
+        var height = canvas.offsetHeight;
+        ctx.fillStyle = "rgba(0,0,0,0.22)";
+        ctx.fillRect(0, 0, width, height);
+
+        for (var i = 0; i < nodes.length; i++) {
+          var n = nodes[i];
+          n.x += n.vx;
+          n.y += n.vy;
+          if (n.x < 0 || n.x > width) n.vx *= -1;
+          if (n.y < 0 || n.y > height) n.vy *= -1;
+        }
+
+        var max = 150;
+        for (var a = 0; a < nodes.length; a++) {
+          for (var b = a + 1; b < nodes.length; b++) {
+            var dx = nodes[a].x - nodes[b].x;
+            var dy = nodes[a].y - nodes[b].y;
+            var d = Math.sqrt(dx * dx + dy * dy);
+            if (d < max) {
+              ctx.strokeStyle = "rgba(160,210,255," + (0.18 * (1 - d / max)) + ")";
+              ctx.lineWidth = 1;
+              ctx.beginPath();
+              ctx.moveTo(nodes[a].x, nodes[a].y);
+              ctx.lineTo(nodes[b].x, nodes[b].y);
+              ctx.stroke();
+              if (Math.random() < 0.0012) {
+                pulses.push({ a: a, b: b, p: 0, speed: 0.012 + Math.random() * 0.02 });
+              }
+            }
+          }
+        }
+
+        for (var p = pulses.length - 1; p >= 0; p--) {
+          var pulse = pulses[p];
+          pulse.p += pulse.speed;
+          if (pulse.p > 1 || !nodes[pulse.a] || !nodes[pulse.b]) {
+            pulses.splice(p, 1);
+            continue;
+          }
+          var x = nodes[pulse.a].x + (nodes[pulse.b].x - nodes[pulse.a].x) * pulse.p;
+          var y = nodes[pulse.a].y + (nodes[pulse.b].y - nodes[pulse.a].y) * pulse.p;
+          var g = ctx.createRadialGradient(x, y, 0, x, y, 14);
+          g.addColorStop(0, "rgba(255,255,255,0.95)");
+          g.addColorStop(0.35, "rgba(120,200,255,0.7)");
+          g.addColorStop(1, "rgba(225,6,0,0)");
+          ctx.fillStyle = g;
+          ctx.beginPath();
+          ctx.arc(x, y, 14, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        for (var k = 0; k < nodes.length; k++) {
+          var node = nodes[k];
+          var glow = 0.35 + 0.25 * Math.sin((t + k * 12) / 28);
+          ctx.fillStyle = "rgba(200,230,255," + glow + ")";
+          ctx.beginPath();
+          ctx.arc(node.x, node.y, node.r, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        requestAnimationFrame(step);
+      }
+
+      window.addEventListener("resize", resize);
+      resize();
+      ctx.fillStyle = "#000";
+      ctx.fillRect(0, 0, canvas.offsetWidth, canvas.offsetHeight);
+      requestAnimationFrame(step);
+    })();
+  </script>
 </body>
 </html>
