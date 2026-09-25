@@ -28,49 +28,69 @@ a { color: inherit; }
 h2 { margin: 0 0 36px; font-size: clamp(32px, 4vw, 42px); font-weight: 700; letter-spacing: -0.03em; text-transform: uppercase; }
 .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px 20px; }
 .work-card { text-decoration: none; display: block; }
-.work-visual { position: relative; aspect-ratio: 16 / 11; margin-bottom: 16px; overflow: hidden; background: #111; }
+.work-visual { position: relative; aspect-ratio: 16 / 11; margin-bottom: 16px; overflow: hidden; }
 .work-visual .ribbon, .work-visual .filmstrip, .work-visual .obj { position: absolute; transition: transform .7s cubic-bezier(.22,.7,.25,1); }
 .clarity-scene { background: #c5d3e0; }
 .narrative-scene { background: #d7c7b6; }
-.partner-scene { background: #1b2430; }
+.partner-scene { background: #9eb6c9; }
 .brief-scene { background: #b7cbb8; }
-.cr1 { height: 18px; width: 72%; left: -6%; top: 36%; border-radius: 20px; background: #2b4c7e; transform: rotate(-16deg); }
-.target { width: 78px; height: 78px; left: 14%; top: 18%; border-radius: 50%; border: 8px solid #1a1a1a; box-shadow: inset 0 0 0 10px #c5d3e0, inset 0 0 0 16px #e10600; }
-.diamond { width: 36px; height: 36px; right: 22%; top: 20%; background: #e10600; transform: rotate(45deg); }
-.compass { width: 54px; height: 54px; right: 16%; bottom: 18%; border-radius: 50%; background: conic-gradient(#111 0 25%, #eee 0 50%, #111 0 75%, #eee 0); box-shadow: 0 0 0 6px #dce6ef; }
-.tick { width: 10px; height: 48px; left: 42%; bottom: 16%; background: #111; transform: rotate(18deg); }
-.tick::after { content: ""; position: absolute; width: 22px; height: 10px; left: -6px; bottom: 0; background: #111; }
-.path { width: 90px; height: 8px; left: 36%; top: 48%; background: #111; transform: rotate(-8deg); }
-.path::before, .path::after { content: ""; position: absolute; right: -2px; top: -6px; border: 10px solid transparent; border-left-color: #111; }
-.nr1 { height: 16px; width: 64%; right: -8%; bottom: 24%; border-radius: 20px; background: #c45a1a; transform: rotate(14deg); }
-.page { width: 70px; height: 92px; background: #f4efe6; box-shadow: 0 8px 16px rgba(0,0,0,.12); border: 1px solid #d7c7b6; }
+.cr1 { height: 18px; width: 72%; left: -6%; top: 36%; border-radius: 20px; background: #f26a1b; transform: rotate(-16deg); }
+.target { width: 78px; height: 78px; left: 14%; top: 18%; border-radius: 50%; border: 8px solid #3f6ea8; box-shadow: inset 0 0 0 10px #c5d3e0, inset 0 0 0 16px #e24a00; background: #f7f3ea; }
+.diamond { width: 36px; height: 36px; right: 22%; top: 20%; background: #f26a1b; transform: rotate(45deg); }
+.compass { width: 54px; height: 54px; right: 16%; bottom: 18%; border-radius: 50%; background: conic-gradient(#3f6ea8 0 25%, #f7f3ea 0 50%, #e24a00 0 75%, #f7f3ea 0); box-shadow: 0 0 0 6px #dce6ef; }
+.tick { width: 10px; height: 48px; left: 42%; bottom: 16%; background: #3f6ea8; transform: rotate(18deg); }
+.tick::after { content: ""; position: absolute; width: 22px; height: 10px; left: -6px; bottom: 0; background: #3f6ea8; }
+.path { width: 90px; height: 8px; left: 36%; top: 48%; background: #e24a00; transform: rotate(-8deg); }
+.path::before, .path::after { content: ""; position: absolute; right: -2px; top: -6px; border: 10px solid transparent; border-left-color: #e24a00; }
+.nr1 { height: 16px; width: 64%; right: -8%; bottom: 24%; border-radius: 20px; background: #f26a1b; transform: rotate(14deg); }
+.page { width: 70px; height: 92px; background: #fff6b5; box-shadow: 0 8px 16px rgba(0,0,0,.12), inset 8px 0 0 #e85a5a; }
 .p1 { left: 16%; top: 16%; transform: rotate(-10deg); }
-.p2 { left: 26%; top: 22%; transform: rotate(8deg); background: #fff; }
-.quote { left: 52%; top: 18%; font-size: 72px; line-height: 1; color: #111; width: auto; height: auto; }
+.p2 { left: 26%; top: 22%; transform: rotate(8deg); background: #fffdf3; }
+.quote { left: 52%; top: 18%; font-size: 72px; line-height: 1; color: #e24a00; width: auto; height: auto; }
 .quote::before { content: "\201C"; }
-.typebar { width: 110px; height: 14px; right: 12%; bottom: 28%; background: repeating-linear-gradient(90deg, #111 0 18px, transparent 18px 24px); transform: rotate(-6deg); }
-.mark { width: 28px; height: 28px; right: 20%; top: 28%; border-radius: 50%; background: #111; }
-.pr1 { height: 10px; width: 50%; left: 24%; top: 48%; background: #7ec8ff; border-radius: 20px; opacity: .7; }
-.line { left: 22%; top: 48%; width: 56%; height: 2px; background: #9ad4ff; }
-.orb { width: 58px; height: 58px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #fff, #6ecbff 30%, #123 70%); box-shadow: 0 0 24px rgba(110,203,255,.45); }
+.typebar { width: 110px; height: 14px; right: 12%; bottom: 28%; background: repeating-linear-gradient(90deg, #3f6ea8 0 18px, transparent 18px 24px); transform: rotate(-6deg); }
+.mark { width: 28px; height: 28px; right: 20%; top: 28%; border-radius: 50%; background: #f26a1b; }
+.pr1 { height: 10px; width: 50%; left: 24%; top: 48%; background: #fff; border-radius: 20px; opacity: .85; }
+.line { left: 22%; top: 48%; width: 56%; height: 3px; background: #fff; }
+.orb { width: 58px; height: 58px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #fff, #7ed0ff 34%, #3f6ea8 72%); box-shadow: 0 0 24px rgba(255,255,255,.55); }
 .o1 { left: 16%; top: 32%; }
 .o2 { right: 16%; top: 32%; }
-.spark { width: 10px; height: 10px; border-radius: 50%; background: #fff; box-shadow: 0 0 12px #7ec8ff; }
+.spark { width: 12px; height: 12px; border-radius: 50%; background: #fff6b5; box-shadow: 0 0 12px #fff; }
 .s1 { left: 40%; top: 28%; }
 .s2 { right: 38%; bottom: 24%; }
 .r1 { width: 78%; left: -8%; top: 28%; height: 22px; border-radius: 20px; background: linear-gradient(90deg, #f26a1b, #e24a00 50%, #ff8a3d); transform: rotate(-18deg); }
 .r2 { width: 70%; right: -10%; bottom: 18%; height: 22px; border-radius: 20px; background: linear-gradient(90deg, #f26a1b, #e24a00); transform: rotate(16deg); }
-.filmstrip { width: 18px; height: 160px; background: repeating-linear-gradient(#1a1a1a 0 10px, #3a2a1a 10px 28px); border: 4px solid #111; }
-.fs1 { left: 8%; top: -10%; transform: rotate(-28deg); }
-.fs2 { right: 10%; bottom: -18%; transform: rotate(22deg); height: 180px; }
-.cam { width: 86px; height: 58px; background: #1c1c1c; border-radius: 8px; box-shadow: 0 10px 18px rgba(0,0,0,.2); }
-.cam::before { content: ""; position: absolute; width: 28px; height: 28px; border-radius: 50%; right: 10px; top: 14px; background: radial-gradient(circle at 40% 40%, #8ec8ff, #16324a 55%, #0b0b0b 70%); box-shadow: 0 0 0 4px #2a2a2a; }
-.cam::after { content: ""; position: absolute; width: 16px; height: 10px; left: 10px; top: -8px; background: #111; border-radius: 3px 3px 0 0; }
-.cam-a { left: 16%; top: 18%; transform: rotate(-12deg); }
-.cam-b { left: 38%; bottom: 16%; width: 96px; height: 64px; transform: rotate(8deg); background: #2b2b2b; }
-.roll { width: 34px; height: 34px; border-radius: 50%; right: 28%; top: 22%; background: radial-gradient(circle at 40% 40%, #c48a3a, #5a2e12 62%, #1a1a1a 63%); }
-.pencil { width: 92px; height: 8px; right: 18%; bottom: 30%; background: linear-gradient(90deg, #222 0 8px, #e2b35a 8px 78px, #f3d7a4 78px 86px, #c47a3a 86px 100%); transform: rotate(-28deg); }
-.frame { width: 54px; height: 42px; right: 14%; top: 14%; border: 7px solid #8b5a2b; transform: rotate(18deg); }
+.filmstrip {
+  width: 42px;
+  height: 58px;
+  border: 0;
+  background: repeating-linear-gradient(#fff6b5 0 11px, #8eb4d8 11px 12px);
+  box-shadow: inset 8px 0 0 #e85a5a, 0 8px 12px rgba(0,0,0,.12);
+  border-radius: 2px;
+}
+.fs1 { left: 8%; top: 12%; transform: rotate(-18deg); }
+.fs2 { right: 8%; bottom: 10%; transform: rotate(14deg); height: 64px; width: 46px; }
+.cam {
+  width: 56px;
+  height: 74px;
+  background: repeating-linear-gradient(#fff6b5 0 12px, #8eb4d8 12px 13px);
+  border-radius: 3px;
+  box-shadow: inset 10px 0 0 #e85a5a, 0 10px 16px rgba(0,0,0,.14);
+}
+.cam::before {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; top: 0;
+  height: 12px;
+  background: #e2c36a;
+  border-radius: 3px 3px 0 0;
+}
+.cam::after { content: none; }
+.cam-a { left: 18%; top: 16%; transform: rotate(-12deg); }
+.cam-b { left: 40%; bottom: 14%; width: 64px; height: 84px; transform: rotate(8deg); }
+.roll { width: 34px; height: 34px; border-radius: 50%; right: 28%; top: 22%; background: radial-gradient(circle at 40% 40%, #ffd27a, #c45a1a 62%, #f26a1b 63%); }
+.pencil { width: 92px; height: 8px; right: 18%; bottom: 30%; background: linear-gradient(90deg, #e24a00 0 8px, #f2c14b 8px 78px, #f3d7a4 78px 86px, #c47a3a 86px 100%); transform: rotate(-28deg); }
+.frame { width: 54px; height: 42px; right: 14%; top: 14%; border: 7px solid #e2c36a; background: #fffdf3; transform: rotate(18deg); }
 .work-card:hover .cr1, .work-card:focus-within .cr1, .work-card.is-on .cr1 { transform: rotate(-26deg) translate(-10px,-8px); }
 .work-card:hover .target, .work-card:focus-within .target, .work-card.is-on .target { transform: translate(-8px,-14px) scale(1.06); }
 .work-card:hover .diamond, .work-card:focus-within .diamond, .work-card.is-on .diamond { transform: rotate(62deg) translate(10px,-12px); }
@@ -90,8 +110,8 @@ h2 { margin: 0 0 36px; font-size: clamp(32px, 4vw, 42px); font-weight: 700; lett
 .work-card:hover .s2, .work-card:focus-within .s2, .work-card.is-on .s2 { transform: translate(-8px,12px); }
 .work-card:hover .r1, .work-card:focus-within .r1, .work-card.is-on .r1 { transform: rotate(-28deg) translate(-12px,-8px); }
 .work-card:hover .r2, .work-card:focus-within .r2, .work-card.is-on .r2 { transform: rotate(26deg) translate(14px,10px); }
-.work-card:hover .fs1, .work-card:focus-within .fs1, .work-card.is-on .fs1 { transform: rotate(-40deg) translate(-10px,12px); }
-.work-card:hover .fs2, .work-card:focus-within .fs2, .work-card.is-on .fs2 { transform: rotate(34deg) translate(8px,-16px); }
+.work-card:hover .fs1, .work-card:focus-within .fs1, .work-card.is-on .fs1 { transform: rotate(-28deg) translate(-10px,12px); }
+.work-card:hover .fs2, .work-card:focus-within .fs2, .work-card.is-on .fs2 { transform: rotate(24deg) translate(8px,-16px); }
 .work-card:hover .cam-a, .work-card:focus-within .cam-a, .work-card.is-on .cam-a { transform: rotate(-22deg) translate(-10px,-16px); }
 .work-card:hover .cam-b, .work-card:focus-within .cam-b, .work-card.is-on .cam-b { transform: rotate(16deg) translate(8px,14px); }
 .work-card:hover .roll, .work-card:focus-within .roll, .work-card.is-on .roll { transform: translate(10px,-18px) rotate(25deg); }
