@@ -58,8 +58,16 @@
           <p>An async retainer. You send the dilemma. We return structured thought. No standups.</p>
         </a>
         <a class="work-card" href="#request">
-          <div class="work-visual">
-            <img src="https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?auto=format&fit=crop&w=1400&q=80" alt="Dark cloud photograph" />
+          <div class="work-visual brief-scene" role="img" aria-label="Vintage cameras and film floating on orange ribbons">
+            <span class="ribbon r1"></span>
+            <span class="ribbon r2"></span>
+            <span class="filmstrip fs1"></span>
+            <span class="filmstrip fs2"></span>
+            <span class="obj cam cam-a"></span>
+            <span class="obj cam cam-b"></span>
+            <span class="obj roll"></span>
+            <span class="obj pencil"></span>
+            <span class="obj frame"></span>
           </div>
           <h3>THE BRIEF</h3>
           <p>Diagnosis, leverage, tradeoffs, recommendation. Meant to be used, not presented.</p>
@@ -155,100 +163,57 @@
       var ctx = canvas.getContext("2d");
       var nodes = [];
       var pulses = [];
-      var w = 0, h = 0, t = 0;
-
+      var t = 0;
       function resize() {
-        w = canvas.width = canvas.offsetWidth * devicePixelRatio;
-        h = canvas.height = canvas.offsetHeight * devicePixelRatio;
+        canvas.width = canvas.offsetWidth * devicePixelRatio;
+        canvas.height = canvas.offsetHeight * devicePixelRatio;
         ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
-        build();
-      }
-
-      function build() {
-        var count = Math.round((canvas.offsetWidth * canvas.offsetHeight) / 14000);
-        count = Math.max(42, Math.min(90, count));
+        var count = Math.max(42, Math.min(90, Math.round((canvas.offsetWidth * canvas.offsetHeight) / 14000)));
         nodes = [];
         for (var i = 0; i < count; i++) {
-          nodes.push({
-            x: Math.random() * canvas.offsetWidth,
-            y: Math.random() * canvas.offsetHeight,
-            vx: (Math.random() - 0.5) * 0.28,
-            vy: (Math.random() - 0.5) * 0.28,
-            r: 1.2 + Math.random() * 1.8
-          });
+          nodes.push({ x: Math.random() * canvas.offsetWidth, y: Math.random() * canvas.offsetHeight, vx: (Math.random() - 0.5) * 0.28, vy: (Math.random() - 0.5) * 0.28, r: 1.2 + Math.random() * 1.8 });
         }
         pulses = [];
       }
-
       function step() {
         t += 1;
-        var width = canvas.offsetWidth;
-        var height = canvas.offsetHeight;
+        var width = canvas.offsetWidth, height = canvas.offsetHeight;
         ctx.fillStyle = "rgba(0,0,0,0.22)";
         ctx.fillRect(0, 0, width, height);
-
         for (var i = 0; i < nodes.length; i++) {
-          var n = nodes[i];
-          n.x += n.vx;
-          n.y += n.vy;
-          if (n.x < 0 || n.x > width) n.vx *= -1;
-          if (n.y < 0 || n.y > height) n.vy *= -1;
+          nodes[i].x += nodes[i].vx; nodes[i].y += nodes[i].vy;
+          if (nodes[i].x < 0 || nodes[i].x > width) nodes[i].vx *= -1;
+          if (nodes[i].y < 0 || nodes[i].y > height) nodes[i].vy *= -1;
         }
-
         var max = 150;
         for (var a = 0; a < nodes.length; a++) {
           for (var b = a + 1; b < nodes.length; b++) {
-            var dx = nodes[a].x - nodes[b].x;
-            var dy = nodes[a].y - nodes[b].y;
-            var d = Math.sqrt(dx * dx + dy * dy);
+            var dx = nodes[a].x - nodes[b].x, dy = nodes[a].y - nodes[b].y, d = Math.sqrt(dx * dx + dy * dy);
             if (d < max) {
               ctx.strokeStyle = "rgba(160,210,255," + (0.18 * (1 - d / max)) + ")";
-              ctx.lineWidth = 1;
-              ctx.beginPath();
-              ctx.moveTo(nodes[a].x, nodes[a].y);
-              ctx.lineTo(nodes[b].x, nodes[b].y);
-              ctx.stroke();
-              if (Math.random() < 0.0012) {
-                pulses.push({ a: a, b: b, p: 0, speed: 0.012 + Math.random() * 0.02 });
-              }
+              ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(nodes[a].x, nodes[a].y); ctx.lineTo(nodes[b].x, nodes[b].y); ctx.stroke();
+              if (Math.random() < 0.0012) pulses.push({ a: a, b: b, p: 0, speed: 0.012 + Math.random() * 0.02 });
             }
           }
         }
-
         for (var p = pulses.length - 1; p >= 0; p--) {
-          var pulse = pulses[p];
-          pulse.p += pulse.speed;
-          if (pulse.p > 1 || !nodes[pulse.a] || !nodes[pulse.b]) {
-            pulses.splice(p, 1);
-            continue;
-          }
+          var pulse = pulses[p]; pulse.p += pulse.speed;
+          if (pulse.p > 1 || !nodes[pulse.a] || !nodes[pulse.b]) { pulses.splice(p, 1); continue; }
           var x = nodes[pulse.a].x + (nodes[pulse.b].x - nodes[pulse.a].x) * pulse.p;
           var y = nodes[pulse.a].y + (nodes[pulse.b].y - nodes[pulse.a].y) * pulse.p;
           var g = ctx.createRadialGradient(x, y, 0, x, y, 14);
-          g.addColorStop(0, "rgba(255,255,255,0.95)");
-          g.addColorStop(0.35, "rgba(120,200,255,0.7)");
-          g.addColorStop(1, "rgba(225,6,0,0)");
-          ctx.fillStyle = g;
-          ctx.beginPath();
-          ctx.arc(x, y, 14, 0, Math.PI * 2);
-          ctx.fill();
+          g.addColorStop(0, "rgba(255,255,255,0.95)"); g.addColorStop(0.35, "rgba(120,200,255,0.7)"); g.addColorStop(1, "rgba(225,6,0,0)");
+          ctx.fillStyle = g; ctx.beginPath(); ctx.arc(x, y, 14, 0, Math.PI * 2); ctx.fill();
         }
-
         for (var k = 0; k < nodes.length; k++) {
-          var node = nodes[k];
-          var glow = 0.35 + 0.25 * Math.sin((t + k * 12) / 28);
-          ctx.fillStyle = "rgba(200,230,255," + glow + ")";
-          ctx.beginPath();
-          ctx.arc(node.x, node.y, node.r, 0, Math.PI * 2);
-          ctx.fill();
+          ctx.fillStyle = "rgba(200,230,255," + (0.35 + 0.25 * Math.sin((t + k * 12) / 28)) + ")";
+          ctx.beginPath(); ctx.arc(nodes[k].x, nodes[k].y, nodes[k].r, 0, Math.PI * 2); ctx.fill();
         }
         requestAnimationFrame(step);
       }
-
       window.addEventListener("resize", resize);
       resize();
-      ctx.fillStyle = "#000";
-      ctx.fillRect(0, 0, canvas.offsetWidth, canvas.offsetHeight);
+      ctx.fillStyle = "#000"; ctx.fillRect(0, 0, canvas.offsetWidth, canvas.offsetHeight);
       requestAnimationFrame(step);
     })();
   </script>
