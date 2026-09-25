@@ -14,17 +14,15 @@
   <a class="skip" href="#main">Skip to content</a>
   <header class="top">
     <a class="wordmark" href="#top">INTELLECKI</a>
-    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="panel">MENU</button>
+    <nav class="nav" aria-label="Primary">
+      <a href="#work">WORK</a>
+      <a href="#what">WHAT WE DO</a>
+      <a href="#method">METHOD</a>
+      <a href="#request">CONTACT</a>
+    </nav>
   </header>
-  <nav class="panel" id="panel" hidden>
-    <a href="#work">WORK</a>
-    <a href="#what">WHAT WE DO</a>
-    <a href="#method">METHOD</a>
-    <a href="#request">CONTACT</a>
-  </nav>
   <main id="main">
     <section class="hero" id="top">
-      <p class="hero-kicker">INTELLECKI, INDEPENDENT INTELLIGENCE</p>
       <h1>AN INDEPENDENT INTELLIGENCE PRACTICE FOR THE COMPLEXITY AGE</h1>
       <p class="hero-lead">We design written intelligence systems that help people get clear, then move.</p>
     </section>
@@ -32,22 +30,22 @@
       <h2>WORK</h2>
       <div class="work-grid">
         <a class="work-card" href="#what">
-          <div class="work-visual v1"><span>01</span></div>
+          <div class="work-visual"><img src="images/work-01.jpg" alt="Pencil and architectural sketch on paper" /></div>
           <h3>STRATEGIC CLARITY</h3>
           <p>A written brief that isolates the real problem, the constraints, the options, and the next move.</p>
         </a>
         <a class="work-card" href="#what">
-          <div class="work-visual v2"><span>02</span></div>
+          <div class="work-visual"><img src="images/work-02.jpg" alt="Printed pages and a black pen" /></div>
           <h3>NARRATIVE & POSITIONING</h3>
           <p>Architecture for how your work, identity, or application is actually read.</p>
         </a>
         <a class="work-card" href="#what">
-          <div class="work-visual v3"><span>03</span></div>
+          <div class="work-visual"><img src="images/work-03.jpg" alt="Two chairs across a table" /></div>
           <h3>THINKING PARTNER</h3>
           <p>An async retainer. You send the dilemma. We return structured thought. No standups.</p>
         </a>
         <a class="work-card" href="#request">
-          <div class="work-visual v4"><span>04</span></div>
+          <div class="work-visual"><img src="images/work-04.jpg" alt="Open folio with a clipped brief" /></div>
           <h3>THE BRIEF</h3>
           <p>Diagnosis, leverage, tradeoffs, recommendation. Meant to be used, not presented.</p>
         </a>
@@ -119,7 +117,7 @@
     </section>
     <section class="contact" id="request">
       <h2>CONTACT</h2>
-      <p class="contact-lead">Request a brief. Tell us the situation and what a good answer would unlock. If it is not a fit, we will say so.</p>
+      <p class="contact-lead">Request a brief. Tell us the situation and what a good answer would unlock.</p>
       <form action="mailto:hello@intellecki.com" method="post" enctype="text/plain">
         <label>NAME <input type="text" name="name" required /></label>
         <label>EMAIL <input type="email" name="email" required /></label>
@@ -148,28 +146,7 @@
       <a href="#what">WHAT WE DO</a>
       <a href="#request">CONTACT</a>
     </div>
-    <p class="legal">© 2026 INTELLECKI</p>
+    <p class="legal">&copy; 2026 INTELLECKI</p>
   </footer>
-  <script>
-    const btn = document.getElementById('menuBtn');
-    const panel = document.getElementById('panel');
-    btn.addEventListener('click', () => {
-      const open = panel.hasAttribute('hidden') === false;
-      if (open) {
-        panel.setAttribute('hidden', '');
-        btn.setAttribute('aria-expanded', 'false');
-        btn.textContent = 'MENU';
-      } else {
-        panel.removeAttribute('hidden');
-        btn.setAttribute('aria-expanded', 'true');
-        btn.textContent = 'CLOSE';
-      }
-    });
-    panel.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => {
-      panel.setAttribute('hidden', '');
-      btn.setAttribute('aria-expanded', 'false');
-      btn.textContent = 'MENU';
-    }));
-  </script>
 </body>
 </html>
