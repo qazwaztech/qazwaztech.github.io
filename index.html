@@ -7,7 +7,6 @@
   <meta name="description" content="Intellecki designs written intelligence systems for founders, researchers, and independent thinkers. Clarity briefs. Narrative architecture. Async partnership." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preconnect" href="https://images.unsplash.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -22,9 +21,7 @@
       <a href="#request">CONTACT</a>
     </nav>
   </header>
-  <a class="to-top" href="#top" aria-label="Back to top">
-    <span aria-hidden="true">↑</span>
-  </a>
+  <a class="to-top" href="#top" aria-label="Back to top"><span aria-hidden="true">↑</span></a>
   <main id="main">
     <section class="hero" id="top">
       <canvas id="synapses" class="hero-field" aria-hidden="true"></canvas>
@@ -37,22 +34,37 @@
       <h2>WORK</h2>
       <div class="work-grid">
         <a class="work-card" href="#what">
-          <div class="work-visual">
-            <img src="https://images.unsplash.com/photo-1502134249126-9f3755a50d78?auto=format&fit=crop&w=1400&q=80" alt="Deep-space nebula photograph" />
+          <div class="work-visual clarity-scene" role="img" aria-label="Compass, target, and path marks">
+            <span class="ribbon cr1"></span>
+            <span class="obj target"></span>
+            <span class="obj diamond"></span>
+            <span class="obj compass"></span>
+            <span class="obj tick"></span>
+            <span class="obj path"></span>
           </div>
           <h3>STRATEGIC CLARITY</h3>
           <p>A written brief that isolates the real problem, the constraints, the options, and the next move.</p>
         </a>
         <a class="work-card" href="#what">
-          <div class="work-visual">
-            <img src="https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?auto=format&fit=crop&w=1400&q=80" alt="Violet starfield photograph" />
+          <div class="work-visual narrative-scene" role="img" aria-label="Pages, type, and quote marks">
+            <span class="ribbon nr1"></span>
+            <span class="obj page p1"></span>
+            <span class="obj page p2"></span>
+            <span class="obj quote"></span>
+            <span class="obj typebar"></span>
+            <span class="obj mark"></span>
           </div>
           <h3>NARRATIVE & POSITIONING</h3>
           <p>Architecture for how your work, identity, or application is actually read.</p>
         </a>
         <a class="work-card" href="#what">
-          <div class="work-visual">
-            <img src="https://images.unsplash.com/photo-1464802686167-b939a6910659?auto=format&fit=crop&w=1400&q=80" alt="Galaxy photograph" />
+          <div class="work-visual partner-scene" role="img" aria-label="Two linked nodes">
+            <span class="ribbon pr1"></span>
+            <span class="obj line"></span>
+            <span class="obj orb o1"></span>
+            <span class="obj orb o2"></span>
+            <span class="obj spark s1"></span>
+            <span class="obj spark s2"></span>
           </div>
           <h3>THINKING PARTNER</h3>
           <p>An async retainer. You send the dilemma. We return structured thought. No standups.</p>
@@ -145,41 +157,35 @@
     </section>
   </main>
   <footer class="foot">
-    <div class="foot-top">
-      <p>INTELLECKI</p>
-      <p>INDEPENDENT INTELLIGENCE</p>
-    </div>
-    <div class="foot-links">
-      <a href="#work">WORK</a>
-      <a href="#what">WHAT WE DO</a>
-      <a href="#request">CONTACT</a>
-    </div>
+    <div class="foot-top"><p>INTELLECKI</p><p>INDEPENDENT INTELLIGENCE</p></div>
+    <div class="foot-links"><a href="#work">WORK</a><a href="#what">WHAT WE DO</a><a href="#request">CONTACT</a></div>
     <p class="legal">&copy; 2026 INTELLECKI</p>
   </footer>
   <script>
+    document.querySelectorAll(".work-card").forEach(function (card) {
+      card.addEventListener("click", function () {
+        card.classList.add("is-on");
+        setTimeout(function () { card.classList.remove("is-on"); }, 900);
+      });
+    });
     (function () {
       var canvas = document.getElementById("synapses");
       if (!canvas) return;
       var ctx = canvas.getContext("2d");
-      var nodes = [];
-      var pulses = [];
-      var t = 0;
+      var nodes = [], pulses = [], t = 0;
       function resize() {
         canvas.width = canvas.offsetWidth * devicePixelRatio;
         canvas.height = canvas.offsetHeight * devicePixelRatio;
         ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
         var count = Math.max(42, Math.min(90, Math.round((canvas.offsetWidth * canvas.offsetHeight) / 14000)));
         nodes = [];
-        for (var i = 0; i < count; i++) {
-          nodes.push({ x: Math.random() * canvas.offsetWidth, y: Math.random() * canvas.offsetHeight, vx: (Math.random() - 0.5) * 0.28, vy: (Math.random() - 0.5) * 0.28, r: 1.2 + Math.random() * 1.8 });
-        }
+        for (var i = 0; i < count; i++) nodes.push({ x: Math.random() * canvas.offsetWidth, y: Math.random() * canvas.offsetHeight, vx: (Math.random() - 0.5) * 0.28, vy: (Math.random() - 0.5) * 0.28, r: 1.2 + Math.random() * 1.8 });
         pulses = [];
       }
       function step() {
         t += 1;
         var width = canvas.offsetWidth, height = canvas.offsetHeight;
-        ctx.fillStyle = "rgba(0,0,0,0.22)";
-        ctx.fillRect(0, 0, width, height);
+        ctx.fillStyle = "rgba(0,0,0,0.22)"; ctx.fillRect(0, 0, width, height);
         for (var i = 0; i < nodes.length; i++) {
           nodes[i].x += nodes[i].vx; nodes[i].y += nodes[i].vy;
           if (nodes[i].x < 0 || nodes[i].x > width) nodes[i].vx *= -1;
@@ -211,8 +217,7 @@
         }
         requestAnimationFrame(step);
       }
-      window.addEventListener("resize", resize);
-      resize();
+      window.addEventListener("resize", resize); resize();
       ctx.fillStyle = "#000"; ctx.fillRect(0, 0, canvas.offsetWidth, canvas.offsetHeight);
       requestAnimationFrame(step);
     })();
