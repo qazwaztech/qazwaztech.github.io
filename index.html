@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Intellecki | Intelligence for what comes next.</title>
   <meta name="description" content="Intellecki designs written intelligence systems for founders, researchers, and independent thinkers. Clarity briefs. Narrative architecture. Async partnership." />
+  <meta name="theme-color" content="#000000" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet" />
@@ -35,51 +36,28 @@
       <div class="work-grid">
         <a class="work-card" href="#what">
           <div class="work-visual clarity-scene" role="img" aria-label="Compass, target, and path marks">
-            <span class="ribbon cr1"></span>
-            <span class="obj target"></span>
-            <span class="obj diamond"></span>
-            <span class="obj compass"></span>
-            <span class="obj tick"></span>
-            <span class="obj path"></span>
+            <span class="ribbon cr1"></span><span class="obj target"></span><span class="obj diamond"></span><span class="obj compass"></span><span class="obj tick"></span><span class="obj path"></span>
           </div>
           <h3>STRATEGIC CLARITY</h3>
           <p>A written brief that isolates the real problem, the constraints, the options, and the next move.</p>
         </a>
         <a class="work-card" href="#what">
           <div class="work-visual narrative-scene" role="img" aria-label="Pages, type, and quote marks">
-            <span class="ribbon nr1"></span>
-            <span class="obj page p1"></span>
-            <span class="obj page p2"></span>
-            <span class="obj quote"></span>
-            <span class="obj typebar"></span>
-            <span class="obj mark"></span>
+            <span class="ribbon nr1"></span><span class="obj page p1"></span><span class="obj page p2"></span><span class="obj quote"></span><span class="obj typebar"></span><span class="obj mark"></span>
           </div>
           <h3>NARRATIVE & POSITIONING</h3>
           <p>Architecture for how your work, identity, or application is actually read.</p>
         </a>
         <a class="work-card" href="#what">
           <div class="work-visual partner-scene" role="img" aria-label="Two linked nodes">
-            <span class="ribbon pr1"></span>
-            <span class="obj line"></span>
-            <span class="obj orb o1"></span>
-            <span class="obj orb o2"></span>
-            <span class="obj spark s1"></span>
-            <span class="obj spark s2"></span>
+            <span class="ribbon pr1"></span><span class="obj line"></span><span class="obj orb o1"></span><span class="obj orb o2"></span><span class="obj spark s1"></span><span class="obj spark s2"></span>
           </div>
           <h3>THINKING PARTNER</h3>
           <p>An async retainer. You send the dilemma. We return structured thought. No standups.</p>
         </a>
         <a class="work-card" href="#request">
-          <div class="work-visual brief-scene" role="img" aria-label="Vintage cameras and film floating on orange ribbons">
-            <span class="ribbon r1"></span>
-            <span class="ribbon r2"></span>
-            <span class="filmstrip fs1"></span>
-            <span class="filmstrip fs2"></span>
-            <span class="obj cam cam-a"></span>
-            <span class="obj cam cam-b"></span>
-            <span class="obj roll"></span>
-            <span class="obj pencil"></span>
-            <span class="obj frame"></span>
+          <div class="work-visual brief-scene" role="img" aria-label="Legal pads and film floating on orange ribbons">
+            <span class="ribbon r1"></span><span class="ribbon r2"></span><span class="filmstrip fs1"></span><span class="filmstrip fs2"></span><span class="obj cam cam-a"></span><span class="obj cam cam-b"></span><span class="obj roll"></span><span class="obj pencil"></span><span class="obj frame"></span>
           </div>
           <h3>THE BRIEF</h3>
           <p>Diagnosis, leverage, tradeoffs, recommendation. Meant to be used, not presented.</p>
@@ -139,8 +117,8 @@
       <h2>CONTACT</h2>
       <p class="contact-lead">Request a brief. Tell us the situation and what a good answer would unlock.</p>
       <form action="mailto:hello@intellecki.com" method="post" enctype="text/plain">
-        <label>NAME <input type="text" name="name" required /></label>
-        <label>EMAIL <input type="email" name="email" required /></label>
+        <label>NAME <input type="text" name="name" required autocomplete="name" /></label>
+        <label>EMAIL <input type="email" name="email" required autocomplete="email" /></label>
         <label>NEED
           <select name="need">
             <option>STRATEGIC CLARITY</option>
@@ -174,10 +152,12 @@
       var ctx = canvas.getContext("2d");
       var nodes = [], pulses = [], t = 0;
       function resize() {
-        canvas.width = canvas.offsetWidth * devicePixelRatio;
-        canvas.height = canvas.offsetHeight * devicePixelRatio;
-        ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
-        var count = Math.max(42, Math.min(90, Math.round((canvas.offsetWidth * canvas.offsetHeight) / 14000)));
+        var dpr = Math.min(window.devicePixelRatio || 1, 2);
+        canvas.width = canvas.offsetWidth * dpr;
+        canvas.height = canvas.offsetHeight * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        var area = canvas.offsetWidth * canvas.offsetHeight;
+        var count = Math.max(24, Math.min(70, Math.round(area / 18000)));
         nodes = [];
         for (var i = 0; i < count; i++) nodes.push({ x: Math.random() * canvas.offsetWidth, y: Math.random() * canvas.offsetHeight, vx: (Math.random() - 0.5) * 0.28, vy: (Math.random() - 0.5) * 0.28, r: 1.2 + Math.random() * 1.8 });
         pulses = [];
@@ -191,7 +171,7 @@
           if (nodes[i].x < 0 || nodes[i].x > width) nodes[i].vx *= -1;
           if (nodes[i].y < 0 || nodes[i].y > height) nodes[i].vy *= -1;
         }
-        var max = 150;
+        var max = width < 700 ? 110 : 150;
         for (var a = 0; a < nodes.length; a++) {
           for (var b = a + 1; b < nodes.length; b++) {
             var dx = nodes[a].x - nodes[b].x, dy = nodes[a].y - nodes[b].y, d = Math.sqrt(dx * dx + dy * dy);
